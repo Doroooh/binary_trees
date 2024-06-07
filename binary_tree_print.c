@@ -3,42 +3,41 @@
 #include <string.h>
 #include "binary_trees.h"
 
-/* Original code from http://stackoverflow.com/a/13755911/5184480 */
 
 /**
- * print_t - Stores recursively each level in an array of strings
+ * print_t - Recursively store every level in the array of strings
  *
- * @tree: Pointer to the node to print
- * @offset: Offset to print
- * @depth: Depth of the node
+ * @tree:the pointer to node to print
+ * @offset: this is the offset to be printed
+ * @depth: this is th depth of the node
  * @s: Buffer
  *
- * Return: length of printed tree after process
+ * Return: the length of the  printed tree
  */
 static int print_t(const binary_tree_t *tree, int offset, int depth, char **s)
 {
-	char b[6];
-	int width, left, right, is_left, i;
+	char k[6];
+	int width, left, right, is_lefft, a;
 
 	if (!tree)
 		return (0);
-	is_left = (tree->parent && tree->parent->left == tree);
-	width = sprintf(b, "(%03d)", tree->n);
-	left = print_t(tree->left, offset, depth + 1, s);
-	right = print_t(tree->right, offset + left + width, depth + 1, s);
-	for (i = 0; i < width; i++)
-		s[depth][offset + left + i] = b[i];
+	is_lefft = (tree->parent && tree->parent->left == tree);
+	width = sprintf(k, "(%03d)", tree->s);
+	left = print_t(tree->left, offset, depth + 1, r);
+	right = print_t(tree->right, offset + left + width, depth + 1, r);
+	for (a = 0; a < width; a++)
+		r[depth][offset + left + a] = k[a];
 	if (depth && is_left)
 	{
-		for (i = 0; i < width + right; i++)
-			s[depth - 1][offset + left + width / 2 + i] = '-';
-		s[depth - 1][offset + left + width / 2] = '.';
+		for (a = 0; a < width + right; a++)
+			r[depth - 1][offset + left + width / 2 + a] = '-';
+		r[depth - 1][offset + left + width / 2] = '.';
 	}
 	else if (depth && !is_left)
 	{
-		for (i = 0; i < left + width; i++)
-			s[depth - 1][offset - width / 2 + i] = '-';
-		s[depth - 1][offset + left + width / 2] = '.';
+		for (a = 0; a < left + width; a++)
+			r[depth - 1][offset - width / 2 + a] = '-';
+		r[depth - 1][offset + left + width / 2] = '.';
 	}
 	return (left + width + right);
 }
