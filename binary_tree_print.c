@@ -60,39 +60,39 @@ static size_t _height(const binary_tree_t *tree)
 }
 
 /**
- * binary_tree_print - Prints a binary tree
+ * binary_tree_print - Printing binary tree
  *
- * @tree: Pointer to the root node of the tree to print
+ * @tree: Pointer to root node of tree to print
  */
 void binary_tree_print(const binary_tree_t *tree)
 {
-	char **s;
-	size_t height, i, j;
+	char **r;
+	size_t height, a, b;
 
 	if (!tree)
 		return;
 	height = _height(tree);
-	s = malloc(sizeof(*s) * (height + 1));
-	if (!s)
+	r = malloc(sizeof(*r) * (height + 1));
+	if (!r)
 		return;
-	for (i = 0; i < height + 1; i++)
+	for (a = 0; a < height + 1; a++)
 	{
-		s[i] = malloc(sizeof(**s) * 255);
-		if (!s[i])
+		r[a] = malloc(sizeof(**r) * 255);
+		if (!r[a])
 			return;
-		memset(s[i], 32, 255);
+		memset(r[a], 32, 255);
 	}
-	print_t(tree, 0, 0, s);
-	for (i = 0; i < height + 1; i++)
+	print_t(tree, 0, 0, r);
+	for (a = 0; a < height + 1; a++)
 	{
-		for (j = 254; j > 1; --j)
+		for (b = 254; b > 1; --b)
 		{
-			if (s[i][j] != ' ')
+			if (r[a][b] != ' ')
 				break;
-			s[i][j] = '\0';
+			r[a][b] = '\0';
 		}
-		printf("%s\n", s[i]);
-		free(s[i]);
+		printf("%s\n", r[a]);
+		free(r[a]);
 	}
-	free(s);
+	free(r);
 }
